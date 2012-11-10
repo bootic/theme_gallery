@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional// "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="description" content="{{ shop.description }}" />
+  <!-- Always force latest IE rendering engine & Chrome Frame -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <link rel="dns-prefetch" href="http://cdn.bootic.net" />
+  <title>{% if resource %}{{ resource.title }}{% endif %}{% if product %}{{ product.title }}{% endif %}{% if template == 'home' %}{{ shop.description }}{% endif %} - {{ shop.name }}</title>
+  {{ 'master.css' | asset_url | stylesheet_tag }}
+  {% bootic_header %}
+  
+</head>
+  
+<body id="{{ template }}">
+  <div id="wrapper">
+    <div id="header" class="clearfix">
+      <select class="mobile_only mobile_menu" data-behaviour="links">
+        <option value="/">Navegación</option>
+        {% for link in menus.main.links %}
+        <option value="{{ link.url }}" {{ "selected='selected'" | if_current_page: link }}>{{ link.title }}</option>
+        {% endfor %}
+      </select>
+      
+      <nav id="main_nav" class="desktop_only">
+      {% for link in menus.main.links %}
+        <a href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a>
+      {% endfor %}
+      </nav>
+      <form action="/search" method="get" id="search_form" class="desktop_only">
+        <input type="search" name="q" value="{{ 'titles.search' | t }}:" onfocus="if(this.value=='{{ 'titles.search' | t }}:')this.value='';" onblur="if(this.value=='')this.value='{{ 'titles.search' | t }}:';"/>
+      </form>
+      
+    </div><!-- /header -->
+    <div id="box" class="clearfix">
+      
+      {% include 'sidebar' %}
+      
+      <div id="main">
+        {{ content_for_layout }}
+      </div><!-- /main -->
+      
+    </div><!-- /box -->
+    
+    <div id="footer">
+      {% for link in menus.footer.links %}
+      <a href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a>
+      {% endfor %}
+    </div>
+  </div><!-- /wrapper -->
+  {% bootic_footer %}
+  {{ 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js' | javascript_tag }}
+  {{ '/javascripts/libs/jquery.cycle.pack.js' | javascript_tag }}
+  {% include 'cart_template' %}
+  {{ 'app.js' | asset_url | javascript_tag }}
+</body>
+</html>

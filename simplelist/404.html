@@ -1,0 +1,11 @@
+<div id="content">
+  <h1>Página no encontrada</h1>
+  <p>Intenta con el menú de navegación de arriba</p>
+
+  {% for product in all_products.tagged_with.featured limit: 4 %}
+      <p>
+        <a href="{{ product.url }}">{{ product.model }}</a> | 
+        <span class="price">{{ product.price.format }}</span>
+      </p>
+   {% endfor %}
+</div>

@@ -1,0 +1,40 @@
+<li class="item-{{ product_item_counter }} product clearfix">
+
+  <!-- shows a 'new' badge if product is tagged with 'new' -->
+  {{ '<div class="new-product"></div>' | print_if_included: 'new', product_item.tag_list }}
+  
+  <a href="{{ product_item.url }}" class="product_thumb">
+    <img src="{{ product_item.first_image | resize: '240x240#c' }}" width="120" alt="{{ product_item.model }}" />
+  </a>
+  
+  <div class="product_info">
+    <h4 class="product_title">
+      <a href="{{ product_item.url }}" title="{{ product_item.title }}">
+        {{ product_item.title | truncate:36 }} 
+        <span class="product_vendor">
+          <em>por</em> 
+          {{ product_item.vendor | truncate: 15 }}
+        </span>
+      </a>
+    </h4>
+    
+    <p class="desc desktop_only">
+      {{ product_item.description | strip_html | truncate: 150 }}
+    </p>
+    
+    <div class="product_tags">
+      {% for tag in product_item.tags %}
+      <a href="{{ tag.url }}">{{ tag }}</a>
+      {% endfor %}
+    </div>
+    
+    <div class="cart_button_and_price">
+      {% unless product_item.price.zero %}
+        <span class="product_price">{{ product_item.price.format }}</span>
+      {% endunless %}
+    
+      {% add_to_cart_no_variants for product_item %}
+    </div>
+  </div>
+
+</li>

@@ -1,0 +1,10 @@
+<h2 class="resource_title title_bar">{{ post.title }}</h2>
+
+<div class="resource_body">
+    {{ post.body }}
+</div><!-- /texto -->
+
+<small class="date">
+  Publicado el {{ post.published_on | date:'%d/%m/%Y' }} 
+  por {{ post.user_name }}
+</small>

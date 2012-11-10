@@ -1,0 +1,26 @@
+<div id="sidebar">  
+  
+  {% if shop.logo %}
+  <h2 id="logo">
+    <a href="/" title="Portada">
+      <img src="{{ shop.logo }}" alt="{{ shop.name }}" />
+    </a>
+  </h2>
+  {% endif %}
+  
+  <div class="ajax_cart" id="ajax_cart">
+    
+  </div><!-- /cart -->
+  
+  <div class="section">
+    <h3>{{ menus.catalog.title }}</h3>
+    <ul class="menu vertical">
+    {% for link in menus.catalog.links %}
+      <li>
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      </li>
+    {% endfor %}
+    </ul><!-- /menu -->
+  </div>
+  
+</div><!-- /sidebar -->

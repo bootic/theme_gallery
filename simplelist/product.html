@@ -1,0 +1,73 @@
+<div class="single_product">
+
+  <!-- shows a 'new' badge if product is tagged with 'new' -->
+  {{ '<div class="new-product"></div>' | print_if_included: 'new', product.tag_list }}
+  
+  <div class="slideshow">
+    <div class="product_thumb" data-behaviour="cycle">
+      {% for image in product.images %}
+      <img src="{{ image | resize: '644x600#c' }}" alt="{{ image.title }}" />
+      {% endfor %}
+    </div>
+    
+    <a href="#" class="prev">prev</a>
+    <a href="#" class="next">next</a>
+    
+  </div><!-- /slideshow -->
+  
+  <div class="clearfix">
+    
+    <div class="product_info">
+      <h1 class="product_title">
+        {{ product.title }} 
+        <span class="product_vendor">
+          <em>por</em> 
+          {{ product.vendor | truncate: 15 }}
+        </span>
+      </h1>
+      <div class="desc left">
+        {{ product.description }}
+      </div><!-- /description -->
+      
+    </div>
+    
+    <div class="cart_and_price right">
+      {% unless product.price.zero %}
+        <span class="product_price">{{ product.price.format }}</span>
+      {% endunless %}
+      {% add_to_cart %}
+    </div>
+    
+  </div>
+  
+  {% if product.product_type %}
+  <ul class="product_attributes">
+    {% for field in product.attributes %}
+    <li id="attribute-{{field.key}}">
+      <strong>{{ field.name }}:</strong> <span>{{ field.value }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+</div>
+
+<!-- show 3 similar products (with matching tags) if any -->
+  {% if product.has_similar_products %}
+  <div id="similar-products">
+
+    <div class="clearfix title_bar">
+      <h2 class="left">{{ "titles.similar_products" | t }}</h2>
+      <span class="right">
+      {% for tag in product.tags %}
+         <a href="{{ tag.url }}">{{ tag }}</a>
+      {% endfor %}
+      </span>
+    </div>
+    
+    <ul class="products clearfix">
+      {% loop product.similar_products in 'product_item' limit:3 %}
+    </ul>
+
+  </div><!-- /similar-products -->
+  {% endif %}

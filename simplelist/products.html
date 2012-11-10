@@ -1,0 +1,11 @@
+<h1>
+  {{ resource.title }}
+  {% if tag %} / {{ tag.name }}{% endif %}
+</h1>
+
+{% paginate products by 20 %}
+  <ul class="products clearfix">
+  {% loop paginated_list in 'product_item' %}
+  </ul>
+  {{ paginated_list | pagination }}
+{% endpaginate %}
