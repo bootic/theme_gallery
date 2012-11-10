@@ -1,0 +1,30 @@
+{% if template == 'blog' or post %}
+
+	<ul id="blog-archive" class="menu">
+		{% for date in blog.calendar %}
+		<li class="{{ 'current' | if_current_page: date }}">
+		{% capture localized_month %}datetime.month_names.month_{{ date.month_num }}{% endcapture %}
+			<a href="{{ date.url }}" title="{{ localized_month | t }}">
+				{{ localized_month | t }} {{ date.year }} ({{ date.post_count }})
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+
+{% else %}
+
+	<ul id="shop-catalog" class="menu">
+		{% for link in menus.catalog.links %}
+		<li class="menuitem-{{ link.slug }}{{ ' current' | if_current_page: link }}">
+			<a href="{{ link.url }}">{{ link.title }}</a>
+		</li>
+		{% endfor %}
+	</ul>
+
+{% endif %}
+<!-- Banners opcionales para Twitter y ofertas 
+<div id="banners">
+	<a target="_blank" href="http://twitter.com/bootic"><img alt="Follow us on Twitter" src="{{ 'banner-twitter.png' | asset_url }}" /></a>
+	<a href="{{ collections.deals.url }}"><img alt="Check our deals" src="{{ 'banner-deals.png' | asset_url }}" /></a>
+</div>
+-->

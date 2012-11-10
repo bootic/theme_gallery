@@ -1,0 +1,17 @@
+<div id="sidebar">
+  <div id="side-blog">
+  <h3 class="titulo dos">{{ 'titles.blog_calendar' | t }}</h3>
+
+  <ul id="archivo">
+    {% for date in blog.calendar %}
+    <li>
+    {% capture localized_month %}datetime.month_names.month_{{date.month_num}}{% endcapture %}
+    <a href="{{ date.url }}" title="{{ localized_month | t }}">
+      {{ localized_month | t }} {{ date.year}} ({{ date.post_count }})
+    </a>
+    </li>
+    {% endfor %}
+  </ul>
+
+  </div>
+</div>

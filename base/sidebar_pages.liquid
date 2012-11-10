@@ -1,0 +1,18 @@
+<div id="sidebar">
+{% if resource.menu.slug != 'main-menu' %}
+
+	<div id="navegacion-{{ resource }}">
+
+		<h3>{{ resource.menu.title }}</h3>
+		<ul>
+			{% for section in resource.menu.sections %}
+			<li class="{{ 'current' | print_if_equal: resource, section }}">
+				{{ section.title | link_to: section.url }}
+			</li>
+			{% endfor %}
+		</ul>
+
+	</div>
+
+{% endif %}
+</div>

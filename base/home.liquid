@@ -1,0 +1,22 @@
+<div id="content">
+
+  <p class="description">
+  {{ shop.description }}
+  </p>
+
+  <div id="myGallery">
+    {% for product in collections.featured.products %}
+    {% if product.images | size > 0 %}
+      <div class="imageElement">
+      <a href="{{ product.url }}" title="Ver m&aacute;s" class="open"></a>
+      <img src="{{ product.first_image.medium }}" class="full" alt="{{ foto.file_name }}" />
+      <img src="{{ product.first_image.thumbnail }}" class="thumbnail" alt="{{ foto.file_name }}" />
+      <h3>{{ product.model }}</h3>
+      <p>{{ product.description | truncate: 120 }}</p>
+      </div>
+    {% endif %}
+    {% endfor %}
+
+  </div><!-- /myGallery -->
+
+</div><!-- /content -->

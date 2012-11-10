@@ -1,0 +1,42 @@
+<!-- this processes tagged_collection as well -->
+<div id="content" class="collection {{ resource.slug }}">
+  <h2 class="titulo">
+    {% unless product_type %}
+     {{ resource.title }}
+    {% endunless %}
+     {% if product_type %}{{ 'titles.with_type' | t }} &quot;{{ product_type.title }}&quot;{% endif %}
+     {% if tag %}{{ 'titles.tagged_with' | t }} {{ tag.name }}{% endif %}
+  </h2>
+	
+  {% if collection %}
+    <p class="descripcion">{{ collection.body }}</p>
+  {% endif %}
+
+	<p class="tags">
+    <strong>{{ 'titles.filter_by' | t }}: </strong>
+    {% for a_tag in resource.tags %}
+      <a href="{{ resource | tagged_collection_path: a_tag }}" class="{{ 'current' | print_if_equal: tag, a_tag}}">{{ a_tag.name }}</a>,
+    {% endfor %}
+  </p>
+
+  {% paginate products by 20 %}
+  <ul class="products clearfix">
+    {% for product in paginated_list %}		
+      <li class="item-{{ product }} clearfix">
+        <a href="{{ product.url }}" class="product-image">
+          <img src="{{ product.first_image.thumbnail }}" alt="{{ product.model }}" />
+        </a>
+        <h3 class="product-model">{{ product.model | truncate: 30 | link_to: product.url }}</h3>
+        {% if product.vendor != shop.name %}
+          <p class="product-vendor">{{ product.vendor }}</p>
+        {% endif %}
+        {% unless product.price.zero %}
+          <small class="product-price">{{ product.price.format }}</small>
+        {% endunless %}
+      </li>
+    {% endfor %}
+  </ul>
+  {{ paginated_list | pagination }}
+{% endpaginate %}
+
+</div><!-- /content -->

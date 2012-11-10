@@ -1,0 +1,19 @@
+<div id="content" class="search">
+  <h2 class="titulo">{{ products | size }} productos encontrados</h2>
+  <ul class="collection clearfix">
+    {% for product in products %}
+    <li class="item-{{ product }} clearfix">
+      <a href="{{ product.url }}" class="product-image">
+        <img src="{{ product.first_image.thumbnail }}" alt="{{ product.model }}" />
+      </a>
+      <h3 class="product-model">{{ product.model | truncate: 30 | link_to: product.url }}</h3>
+      {% if product.vendor != shop.name %}
+        <p class="product-vendor">{{ product.vendor }}</p>
+      {% endif %}
+      {% unless product.price.zero %}
+        <small class="product-price">{{ product.price.format }}</small>
+      {% endunless %}
+    </li>
+    {% endfor %}
+  </ul>
+</div>

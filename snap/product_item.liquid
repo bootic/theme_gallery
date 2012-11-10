@@ -1,0 +1,24 @@
+<li class="item-{{ product_item_counter }} clearfix">
+
+	<!-- shows a 'new' badge if product is tagged with 'new' -->
+	{{ '<div class="new-product"></div>' | print_if_included: 'new', product_item.tag_list }}
+
+	<div class="image-centerer">
+		<a href="{{ product_item.url }}" class="product-image">
+			<img src="{{ product_item.first_image.small }}" alt="{{ product_item.model }}" />
+		</a>
+	</div>
+
+	<h3 class="product-model">
+		<a href="{{ product_item.url }}" title="{{ product_item.model }}">{{ product_item.model | truncate:26 }}</a>
+	</h3>
+
+	{% unless product_item.price.zero %}
+		<small class="product-price">{{ product_item.price.format }}</small>
+	{% endunless %}
+
+	{% if product_item.vendor != shop.name %}
+		<span class="product-vendor">{{ product_item.vendor }}</span>
+	{% endif %}
+
+</li>

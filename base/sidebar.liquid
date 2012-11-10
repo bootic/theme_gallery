@@ -1,0 +1,45 @@
+<div id="sidebar">
+
+  {% if menus.catalog.links | size > 0 %}
+
+  <div id="side-colecciones">
+    <h3>{{ 'titles.collections' | t }}</h3>
+    <ul>
+      {% for link in menus.catalog.links %}
+      <li class="collection-{{ forloop.index }} {{ 'current' | print_if_equal: resource, link}}">
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  {% endif %}
+
+
+  <div id="side-productos">
+    <h3>{{ 'titles.products' | t }}</h3>
+    <ul>
+      {% for type in product_types.all %}
+      {% if type.products | size > 0 %}
+      <li class="product-type-{{ forloop.index }} {{ 'current' | print_if_equal: resource, type}}">
+        <a href="{{ type.url }}">{{ type.name }}</a>
+      </li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+
+  {% if vendors.all | size > 0 %}
+  <div id="side-marcas" class="hidden">
+    <h3>{{ 'titles.vendors' | t }}</h3>
+    <ul>
+      {% for vendor in vendors.all %}
+      <li class="vendor-{{ forloop.index }}">
+        <a href="{{ 'catalogo' | vendored_collection_path: vendor }}" title="{{ vendor }}">{{ vendor }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>	
+  {% endif %}
+
+</div><!-- /sidebar -->

@@ -1,0 +1,96 @@
+<h2>
+	<span class="bootic_nav">
+		{{ 'titles.products' | t }} &raquo;
+	</span>
+	{% if product.vendor != shop.name %}
+	{{ product.vendor }}
+	{% endif %}
+	{{ product.model }}
+</h2>
+
+{% if product.has_images %}
+
+<div id="product-gallery" class="clearfix">
+	{% for image in product.images limit:1 %}
+		<div id="main-image">
+			<a id="product-image-1-display" href="{{ image.large }}" title="{{ product.model }}" rel="overlay[product]">
+				<img src="{{ image.medium }}" alt="{{ product.model }}" />
+			</a>
+		</div>
+	{% endfor %}
+
+	{% if product.image_count > 1 %}
+	<!-- small images -->
+	<div id="scroller">
+	<ul id="image-list" class="assets clearfix">
+		{% for image in product.images %}
+		<li id="product-image-{{ forloop.index }}">
+			<a href="{{ image.large }}" title="{{ product.model }}" rel="overlay[product]">
+				<img src="{{ image.thumbnail }}" alt="{{ product.model }}" />
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+	</div>
+	<!-- /small images -->
+	{% endif %}
+</div>
+
+{% endif %}
+
+<div id="product-main" class="clearfix">
+
+	<!-- facebook like button -->
+	<div id="facebook-button">
+		<iframe src="http://www.facebook.com/plugins/like.php?href={{ product.url }}&amp;send=false&amp;layout=box_count&amp;width=100&amp;show_faces=false&amp;action=recommend&amp;colorscheme=light&amp;font&amp;height=60" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:62px;" allowTransparency="true"></iframe>
+	</div>
+
+	<h1 id="product-model">
+	{% if product.vendor != shop.name %}
+	{{ product.vendor }}
+	{% endif %}
+	{{ product.model }}
+	</h1>
+
+	{% unless product.price.zero %}
+	<h2 id="product-price">{{ product.price.format }}</h2>
+	{% endunless %}
+
+	<div class="left column clearfix">
+
+		<div id="product-description">
+		{{ product.description | format_text }}
+		</div>
+
+	</div><!-- /product-description -->
+
+	{% if product.product_type %}
+	<div class="right column clearfix">
+
+	{% add_to_cart %}
+
+	<ul id="product-attributes">
+		{% for field in product.attributes %}
+		<li class="attribute-{{field.key}}">
+			<strong>{{ field.name }}:</strong> <span>{{ field.value }}</span>
+		</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+	</div>
+
+</div><!-- /product-main -->
+
+<!-- show 3 similar products (with matching tags) if any -->
+{% if product.has_similar_products %}
+	<div class="clear separator"></div>
+
+	<div id="similar-products">
+
+	<h2>{{ "titles.similar_products" | t }}</h2>
+	<ul class="products clearfix">
+	{% loop product.similar_products in 'product_item' limit:3 %}
+	</ul>
+
+</div><!-- /similar-products -->
+{% endif %}

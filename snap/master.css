@@ -1,0 +1,858 @@
+/*
+-----------------------------------------
+Template: Snap
+Theme URI: http://bootic.net
+Version: 0.1
+Author: Tomas Pollak
+Author URI: http://bootlog.org
+-----------------------------------------
+*/
+
+/* ok, lets rock on.
+--------------------------------------------------------------*/
+
+* { margin: 0; padding: 0; }
+
+body {
+	font-size: 62.5%;
+	color: #333;
+}
+
+html, body, div, p, input, select, textarea {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: normal;
+}
+
+img       { border-width: 0; }
+li        { list-style:none; font-size: 1.3em; }
+p         { line-height: 1.5em; font-size: 1.4em; margin-bottom: 1em; }
+li p      { font-size: 1em; }
+
+.entry    { font-size: 1.4em; }
+
+a         { outline:none; text-decoration: none; }
+a:link    { color: #BF173D; }
+a:visited { color: #CA213D; }
+a:hover   { color: #ff0066; text-decoration: underline; }
+
+abbr, acronym {
+	border-bottom: 1px dotted #000;
+	cursor: help;
+}
+
+
+/* helpers
+-------------------------------------*/
+
+.left   { float: left; clear: left; }
+.right  { float: right; clear: right; }
+.center { display: block; text-align: center; }
+.clear  { clear: both }
+
+.invisible { visibility: hidden }
+.hidden    { display: none }
+.notext    { text-indent: -9999px }
+
+.round {
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+}
+
+
+/* layout
+--------------------------------------------------------------*/
+
+#box{
+	width: 800px;
+	margin: 0 auto;
+	position: relative;
+}
+
+#content{
+	width: 540px;
+	float: right;
+}
+
+#sidebar{
+	width: 230px;
+	margin-right: 20px;
+}
+
+
+/* headings
+--------------------------------------------------------------*/
+
+h1, h2, h3, h4{
+	font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+}
+
+h1{
+	font-size: 3em;
+	letter-spacing: -0.05em;
+	line-height: 110%;
+}
+
+h2{
+	font-size: 2.5em;
+	letter-spacing: -0.05em;
+	line-height: 120%;
+	margin-bottom: 20px;
+}
+
+h3{
+	font-size: 1.7em;
+	letter-spacing: -0.05em;
+	line-height: 130%;
+}
+
+h4{
+	font-size: 1.17em;
+	letter-spacing: -0.02em;
+}
+
+
+/* header
+--------------------------------------------------------------*/
+
+#header{
+	margin-top: 40px;
+	position: relative;
+}
+
+#header h1{
+	font-size: 3.2em;
+	line-height: 1em;
+}
+
+#header .menu{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+#header .menu li{
+	padding: 4px 10px;
+	font-size: 1.2em;
+	border-left: 1px solid #ddd;
+	display: inline;
+}
+
+#header .menu li.first,
+#header .menu li:first-child{
+	border-left: none;
+}
+
+#header .menu li a{
+	color: #666;
+}
+
+#header .menu li.current a{
+	color: #000;
+}
+
+
+/* status, below header
+--------------------------------------------------------------*/
+
+#status{
+	background: #f2f2f2;
+	padding: 4px 8px;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	margin: 20px 0;
+}
+
+#status a{
+	font-size: 1.2em;
+	color: #999;
+	text-decoration: underline;
+}
+
+#status a:hover{
+	text-decoration: none;
+	color: #333;
+}
+
+#cart-preview{
+	background: url(icon-cart-32.png) left no-repeat;
+	padding: 9px 0 9px 38px;
+}
+
+#searchform{
+	float: right;
+	margin: 3px 8px 0;
+}
+
+#searchform input{
+	width: 150px;
+	font-size: 1.3em;
+	padding: 4px 5px;
+	background-color: #fff;
+	color: #666;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+#status #cart a{
+	font-size: 1.3em;
+}
+
+
+/* social links
+--------------------------------------------------------------*/
+
+#social-links {
+	float: right;
+	width: 70px;
+}
+
+#social-links li {
+	display: inline;
+}
+
+#social-links a{
+	display: block;
+	float: right;
+	width: 29px;
+	height: 29px;
+	background-image: url(social-icons.png);
+	background-repeat: no-repeat;
+	text-indent: -9999px;
+	margin: 2px 0 0 3px;
+}
+
+.twitter-link a{
+	background-position: top left;
+}
+
+.facebook-link a{
+	background-position: top right;
+}
+
+.twitter-link a:hover{
+	background-position: bottom left;
+}
+
+.facebook-link a:hover{
+	background-position: bottom right;
+}
+
+
+/* nav
+--------------------------------------------------------------*/
+
+.bootic_nav a{
+	color: #333;
+}
+
+
+/* sidebar
+--------------------------------------------------------------*/
+
+#sidebar div{
+	margin-bottom: 2em;
+}
+
+#sidebar h3{
+	padding: 5px 12px;
+	font-size: 1.3em;
+	color: #fff;
+	margin-bottom: 10px;
+}
+
+#sidebar li{
+/* font-size: 1.5em; */
+	text-transform: uppercase;
+	font-size: 1.1em;
+	font-weight: bold;
+	letter-spacing: -0.02em;
+	border-bottom: 1px solid #eee;
+	list-style: circle inside;
+	color: #ccc;
+	padding: 8px 10px;
+}
+
+#sidebar li.current{
+	list-style: disc inside;
+}
+
+#sidebar li.current a {
+	color: #333;
+}
+
+#sidebar li:hover{
+	background-color: #fafafa;
+	color: #999;
+}
+
+#sidebar #banners{
+	margin-top: 10px;
+}
+
+#sidebar #banners img{
+	margin-top: 20px;
+}
+
+
+/* home content
+--------------------------------------------------------------*/
+
+#home #content h2{
+	font-size: 1.5em;
+	margin-bottom: 5px;
+}
+
+
+/* home newsticker
+--------------------------------------------------------------*/
+
+#latest-news{
+	margin: 20px 0;
+}
+
+#latest-news ul{
+	margin-top: 10px;
+	border: 1px solid #ccc;
+	padding: 5px 10px;
+	background: #fafafa;
+}
+
+
+/* home slideshow
+--------------------------------------------------------------*/
+
+#slideshow{
+	margin-top: 10px;
+	position: relative;
+}
+
+#product-gallery,
+#slideshow ul{
+	border: 1px solid #ccc;
+	position: relative;
+	height: 347px;
+}
+
+#slideshow li{
+	height: 100%;
+	width: 100%;
+	display: table-cell !important;
+/*  vertical-align: middle; */
+	text-align: center;
+}
+
+#slideshow li img{
+}
+
+#slideshow .image-detail{
+	position: absolute;
+	left: 30px;
+	bottom: 25px;
+	background: url(white-translucent.png);
+	text-align: left;
+	padding: 2px 10px 7px;
+}
+
+#slideshow .image-detail h3{
+	line-height: 1.4em;
+}
+
+#slideshow .image-detail h4{
+	line-height: 1.2em;
+}
+
+#slideshow .prev-slide,
+#slideshow .next-slide{
+	position: absolute;
+	top: 50%;
+	margin-top: -15px;
+	z-index: 10;
+	width: 31px;
+	height: 31px;
+	background: url(slider-arrows.png) top left no-repeat;
+}
+
+#slideshow .prev-slide{
+	left: -15px;
+}
+
+#slideshow .next-slide{
+	right: -15px;
+	background-position: top right;
+}
+
+#slideshow .prev-slide:hover{
+	background-position: bottom left;
+}
+
+#slideshow .next-slide:hover{
+	background-position: bottom right;
+}
+
+
+/* product list
+--------------------------------------------------------------*/
+
+.products li{
+	float: left;
+	position: relative;
+	width: 153px;
+	margin: 0 0 10px 10px;
+	padding: 10px;
+}
+
+/* clears first item in row in product list so we dont get irregular heights */
+.products li.item-1,
+.products li.item-4,
+.products li.item-7,
+.products li.item-10,
+.products li.item-13,
+.products li.item-16,
+.products li.item-19{
+	clear: left;
+	margin-left: 0;
+}
+
+.products li:hover a{
+	color: #ff0066;
+}
+
+.products li:hover .product-price{
+	background-color: #ff0066;
+}
+
+.products li .new-product{
+	background: url(icon-new.png) no-repeat;
+	width: 48px;
+	height: 48px;
+	position: absolute;
+	top: -3px;
+	left: -3px;
+}
+
+/*
+	css vertical centering hack, from
+	http://www.jakpsatweb.cz/css/css-vertical-center-solution.html
+*/
+
+/* outer */
+.products .image-centerer {
+	border: 1px solid #ccc;
+	overflow: hidden;
+
+/* uncomment this if you want fixed heights on product list */
+/* height: 153px; */
+
+/*
+	display: table;
+	_position: relative;
+*/
+}
+
+/* middle */
+.products a.product-image {
+	height: 153px;
+	display: table-cell !important;
+/*display: block*/
+	vertical-align: middle;
+	text-align: center;
+	_position: absolute;
+	_top: 50%;
+}
+
+/* inner */
+.products li img{
+	max-width: 153px;
+	display: block;
+	margin: 0 auto;
+	_position: relative;
+	_top: -50%;
+}
+
+.products li h3{
+	font-size: 1.15em;
+	margin: 5px 0 2px;
+	font-weight: normal;
+}
+
+.products li p{
+	margin: 0;
+	font-size: 1em;
+	display: none;
+}
+
+.products li .product-vendor{
+	color: #666;
+}
+
+.products li .product-price{
+	font-size: 1em;
+	background: #BF173D;
+	padding: 3px 5px;
+	color: #fff;
+	position: absolute;
+	top: 130px;
+	right: 0;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+
+/* pagination
+--------------------------------------------------------------*/
+
+.pagination{
+	margin: 2em 1em .5em;
+	font-size: 1.3em;
+	color: #999;
+	text-align: center;
+}
+
+.pagination a,
+.pagination span{
+	border: 1px solid #ccc;
+	padding: 3px 5px;
+}
+
+.pagination a:link,
+.pagination a:visited{
+	color: #666;
+	border-color: #999;
+}
+
+.pagination a:hover,
+.pagination .current{
+	color: #333;
+	border-color: #666;
+}
+
+
+/* single product gallery
+--------------------------------------------------------------*/
+
+#product-gallery{
+	margin-bottom: 20px;
+	overflow: hidden;
+	position: relative;
+}
+
+#product-gallery .loading{
+	background: #fff url(ajax-loader.gif) center center no-repeat;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 0;
+}
+
+#main-image{
+	display: table;
+	height: 100%;
+	width: 100%;
+}
+
+#main-image a{
+	display: table-cell !important;
+	vertical-align: middle;
+	text-align: center;
+}
+
+#main-image img{
+}
+
+#scroller{
+	overflow: hidden;
+	position: absolute;
+	height: 100%;
+	width: 77px;
+	top: 0px;
+	right: 0px;
+	padding: 5px 8px;
+	background: url(white-translucent.png);
+}
+
+ul#image-list{
+	position:absolute;
+}
+
+#image-list li{
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+	width: 75px;
+	overflow: hidden;
+}
+
+#image-list li:hover{
+	border-color: #000;
+}
+
+#image-list li img{
+	padding: 0;
+	display: block;
+}
+
+
+/* single product, description, etc
+--------------------------------------------------------------*/
+
+#product .right.column{
+	width: 225px;
+}
+
+#product .left.column{
+	width: 300px;
+}
+
+#product-price{
+	letter-spacing: -0.1em;
+	color: #BF173D;
+}
+
+#facebook-button{
+	float: right;
+	margin: 10px 3px 0 0;
+}
+
+.column .add_to_cart{
+	margin: 5px 0 10px;
+	background: #f6f6f6;
+	padding: 10px;
+	border: 1px solid #ddd;
+	margin-left: 0;
+	width: 201px;
+}
+
+.add_to_cart .unavailable .bootic_variant_title {
+	color: #999;
+}
+
+.add_to_cart .bootic_variant_price {
+	display: inline;
+	color: #CCC;
+	font-size: .85em;
+}
+
+div.separator{
+	padding: 10px 0;
+	border: none;
+	border-bottom: 1px solid #ccc;
+	margin: 20px 40px;
+}
+
+ul#product-attributes{
+	margin-top: 10px;
+}
+
+#product-attributes li{
+	margin-bottom: 8px;
+	border-top: 1px solid #eee;
+	padding-top: 3px;
+}
+
+#product-attributes strong{
+	display: block;
+	font-weight: normal;
+	/* color: #BF173D; */
+	color: #aaa;
+}
+
+#product-attributes span{
+	font-size: 1.5em;
+}
+
+
+/* add to cart form
+--------------------------------------------------------------*/
+
+.add_to_cart .variants{
+	background: #fff;
+	border: 1px solid #ddd;
+	border-bottom: none;
+}
+
+.add_to_cart .variants li{
+	border-bottom: 1px solid #ddd;
+	padding-top: 6px;
+	padding-bottom: 6px;
+}
+
+.add_to_cart .variants li:hover{
+	background-color: #E2EDF6;
+}
+
+.add_to_cart .variants .even{
+	background: #fcfcfc;
+}
+
+#product-main .add_to_cart input{
+	font-size: 1.6em;
+}
+
+.add_to_cart .submit{
+	width: 157px;
+}
+
+/* posts
+--------------------------------------------------------------*/
+
+.post{
+	margin: 0 0 3em;
+}
+
+.post h3{
+	margin: 0 0 10px;
+}
+
+.post small.date{
+	font-size: 1.2em;
+	color: #999;
+	border-top: 1px solid #eee;
+	padding: 7px 0;
+	display: block;
+	margin-top: 10px;
+}
+
+.post img{
+	margin: 0 auto 10px;
+	display: block;
+}
+
+.post img[align="right"]{
+	display: inline;
+	margin-left: 8px;
+}
+
+.post img[align="left"]{
+	display: inline;
+	margin-right: 8px;
+}
+
+.entry{
+	margin: 20px 0 15px;
+}
+
+.entry p{
+	font-size: 1em; /* reset size to avoid clashes with .entry */
+}
+
+.entry ul{
+	margin: 1.2em 1em 2em;
+	position: relative;
+}
+
+.entry li{
+	font-size: 1em;
+	margin: .5em;
+	list-style: disc inside;
+	color: #444;
+}
+
+
+/* footer
+--------------------------------------------------------------*/
+
+#footer{
+	margin: 5em 0 20px;
+	clear: both;
+	color: #bbb;
+	padding: 25px 10px 5px;
+	background: url(bootic-footer-bg.png) left top no-repeat;
+}
+
+#footer p{
+	font-size: 1.25em;
+	line-height: 1.6em;
+}
+
+#credit-card-icons{
+	float: right;
+}
+
+
+/* overlay
+--------------------------------------------------------------*/
+
+#promotion-active{
+	background: white url(/stylesheets/themes/img/icon-promotion.png) 108% -25px no-repeat;
+}
+
+#black-overlay{
+	display: none;
+	position: fixed;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	z-index:1001;
+	-moz-opacity: 0.8;
+	opacity:.80;
+	filter: alpha(opacity=80);
+}
+
+.overlay-content {
+	background: #fff;
+	display: none;
+	position: fixed;
+	top: 25%;
+	left: 50%;
+	margin-left: -250px;
+	width: 500px;
+	padding: 16px;
+	-moz-border-radius: 5xp;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow: 0 0 30px rgba(100,100,100,1);
+	-webkit-box-shadow: 0 0 30px rgba(100,100,100,1);
+	z-index:1002;
+	overflow: auto;
+}
+
+.overlay-content .close{
+	text-align: center;
+}
+
+.overlay-content .close button{
+	font: 14px Helvetica Neue;
+	padding: 6px 10px 6px 10px;
+	color: #fff;
+  background-color: rgb(65,102,133);
+	background-image: -moz-linear-gradient(top, rgba(255,255,255,.25), rgba(255,255,255,.11));
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, rgba(255,255,255,.25)),color-stop(1, rgba(255,255,255,.11)));
+	background-image: -webkit-linear-gradient(rgba(255,255,255,.25), rgba(255,255,255,.11));
+	text-shadow: 0 -1px 1px #222;
+	border: 0;
+	border-radius: 0;
+	border-bottom: 1px solid #222;
+	-moz-box-shadow: 0 1px 3px #999;
+	-webkit-box-shadow: 0 1px 3px #999;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.overlay-content .close button:hover {
+  background-color: steelblue;
+}
+
+/* clearfix
+--------------------------------------------------------------*/
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+.clearfix {display: inline-block;}
+
+/* ie hack \*/
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+/* hello from bootic! */

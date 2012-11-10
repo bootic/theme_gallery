@@ -1,0 +1,9 @@
+img, div { behavior: url(/stylesheets/themes/iepngfix.htc) }
+ 
+#ficha-right{
+	width: 200px;
+}
+ 
+.collection li{
+	display: inline;
+}

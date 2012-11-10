@@ -1,0 +1,700 @@
+/*
+-----------------------------------------
+Theme Name: Base
+Theme URI: http://inven.tar.io
+Description: Template por defecto para nuevas tiendas en Bootic.
+Version: 0.1
+Author: Tomas Pollak
+Author URI: http://bootlog.org
+-----------------------------------------
+*/
+
+/* partamos.
+--------------------------------------------------------------*/
+
+* { margin: 0; padding: 0; }
+
+body {
+  font-size: 62.5%;
+  background: url(bg-body.gif) top repeat-x;
+  color: #333;
+}
+
+html,body,div,p,input,select,textarea {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+}
+
+img   { border-width: 0; }
+li    { list-style:none; font-size: 1.3em;}
+p    { line-height: 1.4em; font-size: 1.3em; margin-bottom: 1em;}
+small  { margin-bottom: 1em; display:block; }
+
+a { outline:none; text-decoration: none; }
+a:link     { color: #ff6600; }
+a:visited   { color: #ff3300; }
+a:active   { color: #ffcc00; }
+a:hover   { text-decoration: underline; }
+
+
+/* layout
+--------------------------------------------------------------*/
+
+#box{
+  width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+#header,
+#container,
+#footer{
+  padding: 0 20px;
+}
+
+#content{
+  width: 540px;
+  float: right;
+}
+#sidebar{
+  width: 200px;
+  margin-right: 20px;
+}
+
+
+/* helpers
+--------------------------------------------------------------*/
+
+.hidden{
+  display: none;
+}
+.invisible{
+  visibility: hidden;
+}
+.left{
+  float: left;
+}
+.right{
+  float: right;
+}
+.clear{
+  clear: both;
+}
+.notext{
+  text-indent: -9999px;
+}
+
+.round{
+  border-radius: .3em;
+  -moz-border-radius: .3em;
+  -webkit-border-radius: .3em;
+  -khtml-border-radius: .3em;
+}
+
+/* header
+--------------------------------------------------------------*/
+
+
+#header h1{
+  position: relative;
+  margin: 30px 12px 0;
+  font-size: 3.2em;
+  line-height: 1em;
+}
+
+#bajada{
+  font-size: 1.1em;
+  margin-left: 12px;
+  color: #666;
+}
+
+#buscador{
+  position: absolute;
+  right: 32px;
+  top: 14px;
+}
+#buscador input{
+  width: 150px;
+  font-size: 1.3em;
+  padding: 4px 5px;
+  background-color: #fff;
+  color: #666;
+}
+#menu{
+  background: url(bg-menu.png) repeat-x;
+  margin-top: 20px;
+  padding: 8px 5px;
+}
+
+#menu li{
+  display: inline;
+  padding: 5px 11px 5px 8px;
+  font-size: 1.4em;
+  border-right: 1px solid #b7d683;
+}
+#menu li a{
+  color: #333;
+}
+#menu li a:hover{
+  color: #000;
+}
+
+#status{
+  margin: 15px 12px 0;
+  color: #999;
+}
+#status a{
+  color: #999;
+  text-decoration: underline;
+}
+#status a:hover{
+  text-decoration: none;
+  color: #333;
+}
+
+/* escondido hasta que tengamos el carro de compras hecho! */
+#carro{
+  float: right;
+}
+
+
+/* content
+--------------------------------------------------------------*/
+
+.description{
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  padding: 0 20px;
+  color: #555;
+}
+
+.highlight{
+  background: #fffccd;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#myGallery{
+  width: 500px !important;
+  height: 200px !important;
+  border: 20px solid #f3f3f3 !important;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.jdGallery{
+  background: #f3f3f3;
+}
+
+.slideElement{
+  background-color: #fff !important;
+}
+
+/* esto es para cuando .imageElement tenga solo un elemento */
+.imageElement{
+  text-align: center;
+}
+
+.imageElement a.open{
+  width: 500px;
+  height: 200px;
+  display: block;
+  position: absolute;
+}
+
+.imageElement h3,
+.imageElement p,
+.imageElement .thumbnail{
+  display: none;
+}
+.imageElement .full{
+  margin-top: -15%;
+  margin-bottom: 15%;
+}
+
+.slideInfoZone{
+  display: block;
+  background-color: transparent !important;
+  height: auto !important;
+  text-align: right;
+}
+.slideInfoZone h2{
+  font-size: 2em !important;
+  color: #333 !important;
+  display: none;
+}
+.slideInfoZone p{
+  color: #333 !important;
+  font-size: 1.4em !important;
+  display: none;
+}
+
+/* titulos y tags
+--------------------------------------------------------------*/
+
+h2.titulo,
+.cart h2,
+.orders h2{
+  border-bottom: 3px solid #a7cd69;
+  margin-bottom: 15px;
+  font-size: 1.8em;
+  font-weight: normal;
+  padding: 0 0 5px 10px;
+}
+h2.titulo small{
+  font-size: .75em;
+  margin-top: 5px;
+}
+h2.titulo small a{
+  color: #666;
+}
+
+p.tags{
+  color: #999;
+}
+p.tags a{
+  color: #999;
+  text-decoration: underline;
+}
+p.tags a:hover{
+  text-decoration: none;
+}
+
+
+/* colecciones
+--------------------------------------------------------------*/
+
+.descripcion{
+  display: none;
+}
+
+.collection ul{
+  margin-left: 10px;
+}
+
+.collection li{
+  float: left;
+  position: relative;
+  width: 90px;
+  margin: 0 10px 0;
+  padding: 10px;
+  border-top: 1px solid #eee;
+  background: none;
+  text-align: center;
+}
+.collection li.item-5,
+.collection li.item-9,
+.collection li.item-13{
+  clear: left;
+}
+
+.collection li img{
+  margin: 1px auto 5px;
+  border: none;
+}
+.collection li h3{
+  font-size: 1.15em;
+  margin: 10px 0 0;
+  font-weight: normal;
+}
+.collection li p{
+  margin: 0;
+  font-size: 1em;
+  display: none;
+}
+.collection li small{
+  font-size: 1em;
+  color: #999;
+  margin-top: 10px;
+}
+
+.pagination{
+  margin: 2em 1em .5em;
+  font-size: 1.3em;
+  color: #999;
+  text-align: center;
+}
+.pagination a,
+.pagination span{
+  border: 1px solid #ccc;
+  padding: 3px 5px;
+}
+.pagination a:link,
+.pagination a:visited{
+  color: #666;
+  border-color: #999;
+}
+
+.pagination a:hover,
+.pagination .current{
+  color: #333;
+  border-color: #666;
+}
+
+/* listado tipos de producto, en /products
+------------------------------------------*/
+
+#tipos h3{
+  font-size: 1.3em;
+  letter-spacing: -0.02em;
+}
+#tipos h3 em{
+  font-style: normal;
+  color: #999;
+  display: none;
+}
+
+#tipos li{
+  width: 250px;
+  float: left;
+  margin: 0 10px 1em;
+}
+
+#tipos p{
+  height: 80px;
+  border: 5px solid #ddd;
+  overflow: hidden;
+  text-align:center;
+  background: #fff;
+  margin-top: .3em;
+}
+#tipos p:hover{
+  border-color: #333;
+}
+
+#tipos img{
+  margin-top: -15%;
+}
+
+
+/* posts
+--------------------------------------------------------------*/
+
+big.precio{
+  float: right;
+  color: #666;
+  font-size: 1em;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.post{
+  margin: 0 0 3em;
+}
+.post h3{
+  font-size: 1.7em;
+  font-weight: normal;
+  margin: 0 0 10px;
+}
+.post small{
+  font-size: 1.2em;
+  color: #999;
+  border-top: 1px solid #eee;
+  padding: 7px 0;
+}
+.post img{
+  margin: 0 auto 10px;
+  display: block;
+}
+.post img[align="right"]{
+  display: inline;
+  margin-left: 8px;
+}
+.post img[align="left"]{
+  display: inline;
+  margin-right: 8px;
+}
+
+.texto{
+  margin: 10px 0 15px;
+  font-size: 1.3em;
+}
+.texto p{
+  font-size: 1em;
+}
+
+.texto ul{
+  margin: 1.2em 1em 2em;
+  position: relative;
+}
+.texto li{
+  font-size: 1em;
+  margin: .5em;
+  list-style: disc inside;
+  color: #444;
+}
+
+
+
+/* productos
+--------------------------------------------------------------*/
+#ficha-left {
+ width: 50%; 
+}
+#img-big li {
+ margin-bottom: 0.5em; 
+}
+#ficha-right{
+  float: right;
+  margin: 0 0 20px 20px;
+}
+
+#ficha-right img{
+  padding: 2px;
+  border: 1px solid #ccc;
+}
+
+#ficha-right .lightbox {
+  display: block; 
+}
+#atributos li{
+  padding: 5px;
+/*  border-bottom: 1px solid #eee;*/
+  margin-top: 0;
+  color: #666;
+  list-style: circle inside;
+  font-size: 1em;
+}
+
+.separador{
+  clear: both;
+  margin: 3em 0;
+}
+
+.add_to_cart{
+  float: left;
+  clear: left;
+}
+
+/* Formularios, cotizacion de productos
+--------------------------------------------------------------*/
+form .clearfix label {
+  float:left;
+  width:8em;
+  text-align:right;
+  padding-right:.5em;
+}
+
+/* sidebar
+--------------------------------------------------------------*/
+
+#sidebar div{
+  margin-bottom: 2em;
+}
+
+#sidebar #side-marcas{
+  display: none;
+}
+
+#sidebar h3{
+  background: url(bg-sidebar-h3.png) repeat-x;
+  padding: 5px 12px;
+  font-size: 1.3em;
+  color: #fff;
+  margin-bottom: 10px;
+}
+#sidebar li{
+  padding: 4px 5px;
+  border-bottom: 1px solid #eee;
+  margin: 0 7px;
+  list-style: circle inside;
+  color: #ccc;
+}
+
+#sidebar li.current{
+  list-style: disc inside;
+}
+
+#sidebar li.current a {
+  font-weight: bold;
+}
+
+#sidebar .include li{
+  color: #666;
+}
+
+#sidebar li:hover{
+  background-color: #fafafa;
+  color: #999;
+}
+
+
+/* contact
+--------------------------------------------------------------*/
+
+.errorlist{
+  margin: 0 0 15px 0;
+  background: #CF3333;
+  padding: 5px 10px;
+  border: 1px solid pink;
+  color: #eee;
+  font-size: 1.3em;
+  line-height: 170%;
+}
+
+.contact form{
+  margin-top: 30px;
+}
+
+.contact form fieldset{
+  padding-top: 20px;
+}
+
+.contact form legend{
+  display: none;
+}
+
+.contact form label{
+  color: #999;
+
+}
+.contact form .required{
+  display: none;
+}
+.contact form input{
+
+}
+.contact form textarea{
+  width: 300px;
+  height: 100px;
+  padding: 4px;
+  color: #333;
+  }
+
+p.botonera{
+/*  width: 430px;*/
+}
+
+/*
+#respond .submit input{
+  background: #eee url('/i/icon-apply.gif') 4px 3px no-repeat;
+  color: #444;
+  padding-bottom: 4px;
+}
+input#nombre{
+  background: #fff url('/i/icon_user.gif') 4px 4px no-repeat;
+}
+input#email{
+  background: #fff url('/i/icon_mail.gif')  4px 4px no-repeat;
+}
+input#url{
+  background: #fff url('/i/icon_web.gif') 4px 4px no-repeat;
+}
+*/
+
+
+/* youtube overlay
+--------------------------------------------------------------*/
+li.overlay-video{
+  list-style: none !important;
+  background: url(icon-video.png) -1px center no-repeat;
+  padding-left: 20px !important;
+  display: block;
+}
+li.overlay-video a.vervideo{
+  color: #222;
+  font-weight: bold;
+}
+#overlay{
+  display: none;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  z-index:1001;
+}
+#overlay.opacity{
+  background-color: black;
+  -moz-opacity: 0.80;
+  opacity:.80;
+  filter: alpha(opacity=80);
+}
+#overlay.macffhack{
+  background: url(macffback.png) repeat;
+}
+
+#overlay-content{
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: -230px 0 0 -230px;
+  width: 425px;
+  padding: 10px 20px 15px;
+  border: 15px solid #a8d8d6;
+  -moz-border-radius: 10px;
+  z-index:1002;
+  overflow: auto;
+  background: white;
+}
+#overlay-content embed{
+  margin-bottom: 10px;
+}
+#overlay-content a.cerrar{
+  margin-bottom: 10px;
+  display: block;
+  text-align: right;
+  background: url(icon-close-window.gif) right 1px no-repeat;
+  padding-right: 18px;
+  color: #aaa;
+}
+#overlay-content a.cerrar:hover{
+  color: #000;
+  background-position: right -14px;
+}
+#overlay-content a.fvd_ytl{
+  display: none;
+}
+#overlay-content h3{
+  font-size: 2em;
+  margin-top: 15px;
+  letter-spacing: -0.03em;
+}
+#overlay-content small{
+  float: right;
+  color: #aaa;
+  font-size: 1.3em;
+  margin: 20px 0 0 8px;
+}
+#overlay-content small a{
+  color: #aaa;
+}
+#overlay-content small a:hover{
+  color: #000;
+}
+
+
+/* footer
+--------------------------------------------------------------*/
+
+#footer{
+  border-top: 3px solid #a7cd69;
+  margin: 5em 20px 20px;
+  clear: both;
+  color: #999;
+  font-size: 1.3em;
+  padding-top: 15px;
+  line-height: 1.5em;
+}
+#footer p{
+  font-size: 1em;
+}
+
+
+/* clearfix
+--------------------------------------------------------------*/
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix {display: inline-block;}
+
+/* donde ta? \*/
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+/* there-there. */

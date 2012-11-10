@@ -1,0 +1,16 @@
+<div id="content" class="blog">
+
+  <h2 class="titulo">{{ post.title }}</h2>
+
+  <div class="post">
+    <div class="texto">
+    {{ post.body }}
+    </div><!-- /texto -->
+
+    <small class="date">
+    Publicado el {{ post.published_on | date:'%d/%m/%Y' }} 
+    por {{ post.user_name }}
+    </small>
+  </div><!-- /post -->
+
+</div><!-- /content -->

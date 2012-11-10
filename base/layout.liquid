@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC -//W3C//DTD XHTML 1.0 Transitional//EN http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head profile="http://gmpg.org/xfn/11">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="description" content="{{ shop.description }}" />
+<title>{% current_title %} - {{ shop.name }}</title>
+  {{ 'master.css' | asset_url | stylesheet_tag }}
+  {{ 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js' | javascript_tag }}
+  {% if template == 'home' %}
+  <!-- in index -->
+  {{ 'jquery.cycle.all.latest.js' | asset_url | javascript_tag }}
+  <script type='text/javascript' charset='utf-8'>
+  $(function () {
+    $('#myGallery').cycle({
+      fx: 'fade' // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+    });
+  });
+  </script>
+ {% endif %}
+ {% if template == 'product' %}
+ {{ 'fancybox.css' | asset_url | stylesheet_tag }}
+ {{ 'jquery.fancybox-1.3.4.pack.js' | asset_url | javascript_tag }}
+
+ <script type="text/javascript" charset="utf-8">
+ $(function () {
+   $("a[rel=lightbox]").fancybox({
+     'transitionIn' : 'none',
+     'transitionOut': 'none',
+     'titlePosition': 'over',
+     'titleFormat' : function(title, currentArray, currentIndex, currentOpts) {
+       return '<span id=fancybox-title-over>Image ' + (currentIndex + 1) + ' / ' + currentArray.length + (title.length ? ' &nbsp; ' + title : '') + '</span>';
+       }
+      });
+    });
+  </script>
+ {% endif %}
+<!--[if lt IE 7.]> {{ 'ie.css' | asset_url | stylesheet_tag }} <![endif]-->
+ {% bootic_header %}
+</head>
+<body id="{{ template }}">
+<div id='box'>
+  <div id='header' class='clearfix'>
+    <h1>
+      <a href='/'> {% if shop.logo %} <img src="{{ shop.logo }}" alt="{{ shop.name }}" /> {% else %} {{ shop.name }} {% endif %} </a>
+    </h1>
+    <span id="bajada">{{ shop.description }}</span>
+    <div id="buscador">
+      <form action="/search" method="get">
+        <input type="text" name="q" value="{{ 'titles.search' | t }}:" placeholder="{{ 'titles.search' | t }}" />
+      </form>
+    </div>
+    <ul id="menu">
+      {% for link in menus.main.links %}
+      <li class="menuitem-{{ link.title | downcase }}{{ ' current' | print_if_equal: resource, link }}">
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <!-- /header -->
+  <div id="container" class="clearfix">
+    <div id="status" class="clearfix">
+      <p id="carro">
+        <a href="/cart">{{ 'titles.cart' | t }}</a>
+      </p>
+      <p id="location">
+         {% navigation_path %}
+      </p>
+    </div>
+    <!-- /status -->
+    {{ content_for_layout }}
+    {% if template == 'collection' %}
+      {% include 'sidebar_pages' %}
+    {% elsif template == 'page' %}
+      {% include 'sidebar_pages' %}
+    {% elsif template == 'blog' %}
+      {% include 'sidebar_blog' %}
+    {% else %}
+      {% include 'sidebar' %}
+    {% endif %}
+  </div>
+  <!-- /container -->
+  <div id="footer">
+     {{ pages.footer.body }}
+  </div>
+  <!-- /footer -->
+</div>
+<!-- /box -->
+{% bootic_footer %}
+<div id="overlay" class="opacity">
+</div>
+</body>
+</html>

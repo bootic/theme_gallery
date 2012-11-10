@@ -1,0 +1,31 @@
+<div id="content" class="blog">
+ <h2 class="titulo">
+  {% if blog.date %}
+   {% capture localized_month %}datetime.month_names.month_{{blog.month}}{% endcapture %}
+   {% if blog.day %}{{blog.day}} {% endif %}
+   {{ localized_month | t }} {{ blog.year }}
+  {% else %}
+   {{ 'titles.latest_news' | t }}
+  {% endif %}
+ </h2>
+ {% paginate blog.posts by:30 %}
+ {% for post in paginated_list %}
+  <div class="post">
+   <h3>
+    <a href="{{post.url}}" title="{{post.title}}">
+     {{ post.title }}
+    </a>
+   </h3>
+   <p class="texto">
+    {{ post.body | strip_html | truncate: 512 }}
+   </p><!-- /texto -->
+
+   <small class="date">
+    Publicado el {{ post.published_on | date:'%d/%m/%Y' }} 
+   </small>
+  </div><!-- /post -->
+ {% endfor %}
+ {{ paginated_list | pagination }}
+ {% endpaginate %}
+
+</div><!-- /content -->

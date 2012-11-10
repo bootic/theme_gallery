@@ -1,0 +1,8 @@
+<h2>{% navigation_path ' &raquo; ' %}</h2>
+
+{% paginate products by 20 %}
+	<ul class="products clearfix">
+	{% loop paginated_list in 'product_item' %}
+	</ul>
+	{{ paginated_list | pagination }}
+{% endpaginate %}

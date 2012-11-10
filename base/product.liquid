@@ -1,0 +1,114 @@
+<div id="content" class="ficha clearfix">
+  <h2 class="titulo">
+    {% if @product.price != 0 %}
+    <big class="precio">{{ product.price.format }}</big>
+    {% endif %}
+    {% if product.vendor and product.vendor == shop.name %}
+    {{ product.vendor }}&nbsp;
+    {% endif %}
+    {{ product.model }}
+  </h2>
+  {% if product.has_tags %}
+  <p class="tags">
+    <strong>{{ 'titles.tags' | t }}:</strong>
+    {% for tag in product.tags %}
+    <a href="{{ tag.url }}" title="{{tag.name}}">{{tag.name}}</a>, 
+    {% endfor %}
+  </p>
+  {% endif %}
+  {% if product.has_images %}
+  <div id="ficha-right" class="clearfix">
+    <!-- big images (2) -->
+    <ul id="img-big" class="assets clearfix">
+      {% for image in product.images limit:2 %}
+      <li class="img-big-{{ forloop.index }}">
+        <a href="{{ image.large }}" title="Detalle de {{product.model}}" rel="lightbox" class="lightbox">
+          <img src="{{ image.small }}" alt="{{ product.model }}" />
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    <!-- /big images -->
+
+    {% if product.images | size > 2 %}
+    <!-- small images -->
+    <ul id="img-small" class="assets clearfix">
+      {% for image in product.images offset: 2 %}
+      <li>
+        <a href="{{ image.large }}" title="Detalle de {{product.model}}" rel="lightbox" class="lightbox">
+          <img src="{{ image.thumbnail }}" alt="{{ product.model }}" />
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    <!-- /small images -->
+    {% endif %}
+
+  </div><!-- /ficha right -->
+  {% endif %}
+
+  <div id="ficha-left" class="texto clearfix">
+
+    <div class="product-description clearfix">
+      {{ product.description | newline_to_br }}
+
+      {% if product.product_type %}
+      <ul id="atributos">
+        {% for field in product.meta_fields %}
+        {% if field.name == 'Video' %}
+        <li class="overlay-video">
+          <a class="vervideo" href="javascript:void(0)" onclick="showOverlay('overlay-content')">Ver video!</a>
+          <div id="overlay-content">
+            <a class="cerrar" href="javascript:void(0)" onclick="hideOverlay('overlay-content');">Cerrar</a>
+            {{ field.value }}
+          </div>
+        </li>
+        {% else %}
+        <li>
+          <strong>{{ field.name }}:</strong> {{field.value}}.
+        </li>
+        {% endif %}
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+    </div><!-- /product-description -->
+
+
+    {% add_to_cart %}
+
+
+  </div><!-- /ficha left -->
+
+  <div class="separador"></div>
+
+  {% if product.has_similar_products %}
+  <div id="similares">
+
+    <h2 class="titulo">{{ "titles.related_products" | t }}</h2>
+
+    <ul class="collection">
+      {% for p in product.similar_products limit:4 %}
+      <li class="item-{{ forloop.index + 1 }} clearfix">
+        <a href="{{ p.url }}" title="{{ p.model }}">
+          <img src="{{ p.first_image.thumbnail }}" alt="{{ p.model }}" />
+        </a>
+
+        <h3 class="product-model">
+          <a href="{{ p.url }}" title="{{ p.model }}">{{ p.model | truncate:30 }}</a>
+        </h3>
+        {% if p.vendor != shop.name %}
+        <p class="product-vendor">{{ p.vendor }}</p>
+        {% endif %}
+        {% unless p.price.to_f == 0.0 %}
+        <small class="product-price">{{ p.price.format }}</small>
+        {% endunless %}
+
+      </li>
+      {% endfor %}
+    </ul>
+
+  </div><!-- /similares -->
+  {% endif %}
+
+</div><!-- /content -->

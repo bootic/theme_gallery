@@ -1,0 +1,42 @@
+<!-- show slideshow of all products in 'featured' collection -->
+{% if collections.featured.has_products %}
+<div id="slideshow">
+	<a class="prev-slide notext" href="#">Prev</a>
+	<ul class="clearfix">
+	{% for p in collections.featured.products %}
+		<li>
+			<a href="{{ p.url }}">
+				<img src="{{ p.first_image.medium }}" alt="{{ p.model }}" />
+			</a>
+			<div class="image-detail">
+				<h3><a href="{{ p.url }}">{{ p.model }}</a></h3>
+				<h4>{{ p.price.format }}</h4>
+			</div>
+		</li>
+	{% endfor %}
+	</ul>
+	<a class="next-slide notext" href="#">Next</a>
+</div>
+{% endif %}
+
+<!-- show latest 5 posts published in blog -->
+<div id="latest-news">
+	<h2>{{ 'titles.latest_news' | t }}</h2>
+	<ul class="clearfix ticker">
+	{% for post in blog.posts limit:5 %}
+		<li>
+			<h4><a href="{{post.url}}" title="{{post.title}}">{{ post.title }}</a></h4>
+		</li>
+	{% endfor %}
+	</ul>
+</div>
+
+<!-- show latest 3 products in 'popular' collection -->
+{% if collections.popular.has_products %}
+<div id="latest-products">
+	<h2>{{ collections.popular.title }}</h2>
+	<ul class="products clearfix">
+	{% loop collections.popular.products in 'product_item' limit:3 %}
+	</ul>
+</div>
+{% endif %}

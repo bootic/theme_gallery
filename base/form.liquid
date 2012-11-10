@@ -1,0 +1,16 @@
+<div id="content" class="contact">
+ <h2 class="titulo">{{ form.title }}</h2>
+ 
+ {% if form.sent %}
+  <div class="bootic_sent_contact_message">
+   {{ 'forms.messages.sent' | t }}
+  </div>
+ {% endif %}
+
+ <div class="texto">
+  {{ form.body }}
+ </div>
+
+ {% contact_form_fields %}
+
+</div><!-- /content -->

@@ -1,0 +1,14 @@
+<div class="post">
+
+	<h2>{{ post.title }}</h2>
+
+	<div class="entry">
+	{{ post.body }}
+	</div><!-- /entry -->
+
+	<small class="date" title="{{ post.published_on | date:'%b %d %H:%M:%S %Y' }}">
+	Publicado <span>el {{ post.published_on | date:'%d/%m/%Y' }}</span>
+	por {{ post.user_name }}
+	</small>
+
+</div><!-- /post -->

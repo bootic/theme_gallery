@@ -1,0 +1,21 @@
+img, div { behavior: url(/stylesheets/themes/iepngfix.htc) }
+
+#social-links {
+	float: right;
+	width: 65px;
+}
+
+#social-links li{
+	display: inline;
+}
+
+.image-centerer{
+	height: 150px;
+}
+
+.product-image{
+	position: relative;
+	z-index: -1;
+	top: 15%;
+}
+
